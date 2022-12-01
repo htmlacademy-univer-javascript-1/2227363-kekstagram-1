@@ -1,3 +1,3 @@
-import  {generateObjects}  from "./data.js";
+import  {drawPictures}  from "./draw_miniphotos.js";
 
-
+drawPictures();
