@@ -27,7 +27,7 @@ function generateObjects() {
 
   let objects = [];
 
-  for (let id = 0; id < 25; id++) {
+  for (let id = 1; id <= 25; id++) {
     let url = "photos/" + id + ".jpg";
     let description = "This is a great photo with id = " + id;
     let likes = getRandomPositiveInteger(15, 200);
