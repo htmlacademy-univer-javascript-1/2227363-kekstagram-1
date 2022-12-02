@@ -45,8 +45,8 @@ function generateObjects() {
       comments.push({
           id: newID,
           avatar: 'img/avatar-' + getRandomPositiveInteger(1, 6) +'.svg',
-          message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.size)],
-          name: NICKNAMES[getRandomPositiveInteger(0, NICKNAMES.size)],
+          message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length-1)],
+          name: NICKNAMES[getRandomPositiveInteger(0, NICKNAMES.length-1)],
         }
       );
     }
@@ -63,4 +63,5 @@ function generateObjects() {
   return objects;
 }
 
-export {generateObjects};
+
+export let pictureObjects = generateObjects();

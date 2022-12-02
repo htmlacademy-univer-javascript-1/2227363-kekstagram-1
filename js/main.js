@@ -1,3 +1,3 @@
-import  {drawPictures}  from "./draw_miniphotos.js";
+import  {activatePictures}  from "./gallery.js";
 
-drawPictures();
+activatePictures();
