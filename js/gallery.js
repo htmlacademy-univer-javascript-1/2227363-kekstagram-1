@@ -91,4 +91,3 @@ function drawBigPicture(object) {
 }
 
 export {activatePictures};
-

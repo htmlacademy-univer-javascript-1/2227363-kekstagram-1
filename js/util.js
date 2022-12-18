@@ -12,4 +12,7 @@ const checkStringLength = (string, size) => {
   return String(string).length <= size;
 }
 
-export {getRandomPositiveInteger, checkStringLength};
+const isEsc = (event) => event.key === 'Escape';
+
+
+export {getRandomPositiveInteger, checkStringLength, isEsc};
