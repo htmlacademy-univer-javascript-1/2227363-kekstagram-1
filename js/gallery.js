@@ -1,12 +1,31 @@
+import { debounce, getRandomUniqueElements } from "./util.js";
 
-export function activatePictures(pictures) {
-  pictures.forEach((object) => drawSmallPicture(object));
+const filterButtons = document.querySelectorAll('.img-filters__button');
+
+let currentPictures;
+
+export function activatePictures(pictures, mode) {
+  currentPictures = pictures;
   prepareBigPicture();
+  document.querySelectorAll('.picture').forEach((pic) => pic.remove());
+  switch (mode) {
+    case ("filter-default"):
+      pictures.forEach((object) => drawSmallPicture(object));
+      break;
+    case ("filter-random"):
+      getRandomUniqueElements(pictures, 10).forEach((object) => drawSmallPicture(object));
+      break;
+    default:
+      const sortedPics = Array.from(pictures);
+      sortedPics.sort((first, second) => second.comments.length - first.comments.length);
+      sortedPics.forEach((object) => drawSmallPicture(object));
+      break;
+  }
 }
 
+const debouncedActivatePictures = debounce(activatePictures, 500);
 
 function drawSmallPicture(object) {
-
   let newObject = document.querySelector('#picture').cloneNode(true).content;
 
   newObject.querySelector('.picture__img').setAttribute('src', object.url);
@@ -106,7 +125,6 @@ function drawBigPicture(object) {
   bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
 
   commentLoader.addEventListener('click', function addComments (evt) {
-    console.log(commentIndex);
     let comentBorder = commentIndex + 5;
     while (commentIndex < comentBorder && commentIndex < allComments.length) {
       socialComments.append(allComments[commentIndex]);
@@ -120,4 +138,15 @@ function drawBigPicture(object) {
 
     bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
   });
-}12331
+}
+
+
+export function setEventFilter() {
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach((otherButton) => otherButton.classList.remove('img-filters__button--active'));
+      button.classList.add('img-filters__button--active');
+      debouncedActivatePictures(currentPictures, button.id);
+    });
+  });
+};
