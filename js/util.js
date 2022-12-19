@@ -15,4 +15,44 @@ const checkStringLength = (string, size) => {
 const isEsc = (event) => event.key === 'Escape';
 
 
-export {getRandomPositiveInteger, checkStringLength, isEsc};
+// Источник - https://www.freecodecamp.org/news/javascript-debounce-example
+
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_throttle
+
+function throttle (callback, delayBetweenFrames) {
+  let lastTime = 0;
+
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+}
+
+
+function getRandomUniqueElements(arr, n) {
+  const result = new Array(n);
+  let len = arr.length;
+  const taken = new Array(len);
+  while (n--) {
+    let x = Math.floor(Math.random() * len);
+    result[n] = arr[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+};
+
+
+export {getRandomPositiveInteger, checkStringLength, isEsc, debounce, throttle, getRandomUniqueElements};

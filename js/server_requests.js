@@ -1,9 +1,17 @@
 import { pictureObjects } from "./data.js";
+import { setEventFilter } from "./gallery.js";
+
+const imgFilters = document.querySelector('.img-filters');
+
 
 function getData(render) {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
     .then((photos) => render(photos))
+    .then(() => {
+      imgFilters.classList.remove('img-filters--inactive');
+      setEventFilter();
+    })
     .catch(() => render(pictureObjects));
 };
 
