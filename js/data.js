@@ -64,7 +64,7 @@ function generateObjects() {
 }
 
 
-export let pictureObjects = generateObjects();
+export const pictureObjects = generateObjects();
 
 
 export const EFFECTS = {

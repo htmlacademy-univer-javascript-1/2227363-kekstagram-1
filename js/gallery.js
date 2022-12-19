@@ -1,8 +1,6 @@
-import  {pictureObjects}  from "./data.js";
 
-
- function activatePictures() {
-  pictureObjects.forEach((object) => drawSmallPicture(object));
+export function activatePictures(pictures) {
+  pictures.forEach((object) => drawSmallPicture(object));
   prepareBigPicture();
 }
 
@@ -107,7 +105,8 @@ function drawBigPicture(object) {
 
   bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
 
-  commentLoader.addEventListener('click', (evt) => {
+  commentLoader.addEventListener('click', function addComments (evt) {
+    console.log(commentIndex);
     let comentBorder = commentIndex + 5;
     while (commentIndex < comentBorder && commentIndex < allComments.length) {
       socialComments.append(allComments[commentIndex]);
@@ -116,10 +115,9 @@ function drawBigPicture(object) {
 
     if (commentIndex >= allComments.length) {
       commentLoader.classList.add('hidden');
+      commentLoader.removeEventListener('click', addComments);
     }
 
     bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
   });
-}
-
-export {activatePictures};
+}12331
