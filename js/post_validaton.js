@@ -10,28 +10,28 @@ const hashtagRegex = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}$)|(^\s*$)/
 
 
 let pristine = new Pristine(form, {
-    classTo: 'img-upload__field-wrapper',
-    errorClass: 'text-invalid',
-    successClass: 'text-valid',
-    errorTextParent: 'img-upload__field-wrapper',
-    errorTextTag: 'div',
-    errorTextClass: 'text-invalid__error'
+  classTo: 'img-upload__field-wrapper',
+  errorClass: 'text-invalid',
+  successClass: 'text-valid',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextTag: 'div',
+  errorTextClass: 'text-invalid__error'
 }, true);
 
 
 pristine.addValidator(
-    hashtagsField,
-    (value) => {
-        const hashtagList = value.split(' ');
+  hashtagsField,
+  (value) => {
+    const hashtagList = value.split(' ');
 
-        let isHashtagRight = true;
-        hashtagList.forEach(text => {
-            isHashtagRight = isHashtagRight & hashtagRegex.test(text);
-        });
-        return isHashtagRight;
-    },
-    'incorrect hashtag'
-);
+    let isHashtagRight = true;
+    hashtagList.forEach(text => {
+        isHashtagRight = isHashtagRight & hashtagRegex.test(text);
+    });
+    return isHashtagRight;
+  },
+  'incorrect hashtag'
+  );
 
 pristine.addValidator(
     hashtagsField,

@@ -48,7 +48,7 @@ function createPostForm() {
     document.body.classList.add('modal-open');
     imgUploadOverlay.classList.remove('hidden');
   });
-};
+}
 
 
 function createSuccessElement() {
@@ -63,7 +63,7 @@ function createSuccessElement() {
       }
     });
   document.body.appendChild(successElement);
-};
+}
 
 
 function createErrorElement(errorTitle) {
@@ -78,7 +78,7 @@ function createErrorElement(errorTitle) {
       }
     });
   document.body.appendChild(errorElement);
-};
+}
 
 
 export function activateUploadFile() {
@@ -100,5 +100,4 @@ export function activateUploadFile() {
   createPostForm();
   resetEffect();
   resetScale();
-};
-
+}

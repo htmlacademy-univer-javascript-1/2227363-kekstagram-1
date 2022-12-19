@@ -28,8 +28,8 @@ function generateObjects() {
   const objects = [];
 
   for (let id = 1; id <= 25; id++) {
-    const url = 'photos/' + id + '.jpg';
-    const description = 'This is a great photo with id = ' + id;
+    const url = `photos/${id}.jpg`;
+    const description = `Очумительная фотка: ${id}`;
     const likes = getRandomPositiveInteger(15, 200);
     const comments = [];
     const usedCommentIDs = [];
@@ -44,14 +44,14 @@ function generateObjects() {
 
       comments.push({
         id: newID,
-        avatar: 'img/avatar-' + getRandomPositiveInteger(1, 6) + '.svg',
+        avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
         message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
         name: NICKNAMES[getRandomPositiveInteger(0, NICKNAMES.length - 1)],
       }
       );
     }
 
-    let newObj = {
+    const newObj = {
       id: id,
       url: url,
       description: description,

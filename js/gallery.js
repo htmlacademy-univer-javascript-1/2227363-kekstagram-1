@@ -151,4 +151,4 @@ export function setEventFilter() {
       debouncedActivatePictures(currentPictures, button.id);
     });
   });
-};
+}
