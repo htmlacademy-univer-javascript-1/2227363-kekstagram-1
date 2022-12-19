@@ -91,7 +91,7 @@ function setPreview() {
   imgPreview.style.transform = `scale(${DEFAULT_SCALE / 100})`;
   scaleConrolValue.value = `${DEFAULT_SCALE}%`;
   scaleControl.addEventListener('click', changeScale);
-};
+}
 
 
 function resetScale() {

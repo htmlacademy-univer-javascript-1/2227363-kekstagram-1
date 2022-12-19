@@ -2,7 +2,6 @@ import { pictureObjects } from './data.js';
 import { setEventFilter } from './gallery.js';
 
 
-
 function getData(render) {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
@@ -11,7 +10,7 @@ function getData(render) {
       setEventFilter();
     })
     .catch(() => render(pictureObjects));
-};
+}
 
 
 function sendData(onFail, onSuccess, body) {
@@ -36,6 +35,6 @@ function sendData(onFail, onSuccess, body) {
     .catch(() => {
       onFail('Data not sent!');
     });
-};
+}
 
 export { getData, sendData };

@@ -24,4 +24,4 @@ export function setFileListener(evt) {
       preview.style.removeProperty('background-image');
     });
   }
-};
+}
