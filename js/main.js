@@ -1,5 +1,6 @@
 import { activatePictures }  from "./gallery.js";
-import { createPostForm } from "./post_upload.js";
+import { activateUploadFile } from "./post_upload.js";
+import { getData } from "./server_requests.js";
 
-activatePictures();
-createPostForm();
+getData(activatePictures);
+activateUploadFile();

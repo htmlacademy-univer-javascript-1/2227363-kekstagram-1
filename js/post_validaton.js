@@ -1,17 +1,15 @@
-import { isEsc } from "./util";
-
 const form = document.querySelector('.img-upload__form');
-const hashtags = form.querySelector('.text__hashtags');
+const hashtagsField = form.querySelector('.text__hashtags');
 const submitButton = form.querySelector('.img-upload__submit');
+
+const description = form.querySelector('.text__description');
 
 const hashtagRegex = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}$)|(^\s*$)/
 
 
-let isHashtagRight = true;
-let isCommentRight = true;
 
 
-const pristine = new Pristine(form, {
+let pristine = new Pristine(form, {
     classTo: 'img-upload__field-wrapper',
     errorClass: 'text-invalid',
     successClass: 'text-valid',
@@ -21,40 +19,35 @@ const pristine = new Pristine(form, {
 }, true);
 
 
-pristine.addValidation(
-    hashtags,
+pristine.addValidator(
+    hashtagsField,
     (value) => {
-        const hashtags = value.split(' ');
-        isHashtagRight = hashtags.every(hashtagRegex.test(text));
-        submitButton.setAttribute('disabled', (!isHashtagRight || !isCommentRight)? 'false' : 'true');
+        const hashtagList = value.split(' ');
+
+        let isHashtagRight = true;
+        hashtagList.forEach(text => {
+            isHashtagRight = isHashtagRight & hashtagRegex.test(text);
+        });
         return isHashtagRight;
     },
     'incorrect hashtag'
 );
 
-pristine.addValidation(
-    hashtags,
+pristine.addValidator(
+    hashtagsField,
     (hashtag) => {
         const keys = hashtag.split(' ').map((tag) => tag.toLowerCase());
-        return (new Set(hashtags).size == hashtags.length);
+
+        return (new Set(keys).size == keys.length);
     },
-    'Hashtag is not uniuque'
+    'Hashtags is not uniuque'
 );
 
-pristine.addValidation(
+pristine.addValidator(
     description,
-    (value) => {
-        isCommentRight = value.length < 140;
-        submitButton.setAttribute('disabled', (!isHashtagRight || !isCommentRight)? 'false' : 'true');
-        return isCommentRight;
-    },
+    (value) => value.length < 140,
     'Comment is too big'
 );
-
-form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
-});
 
 
 export {pristine};

@@ -8,7 +8,7 @@ const slider = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.img-upload__effect-level');
 const effectLevelValue = document.querySelector('.effect-level__value');
 
-const scaleValue = document.querySelector('.scale__control--value');
+const scaleConrolValue = document.querySelector('.scale__control--value');
 const scaleControl = document.querySelector('.img-upload__scale');
 
 
@@ -21,25 +21,25 @@ function setEffect(effect) {
   effectLevelValue.value = slider.noUiSlider.get();
   if (effect === DEFAULT_EFFECT) {
     effectLevel.classList.add('hidden');
-    return;
   }
-  effectLevel.classList.remove('hidden');
-  slider.noUiSlider.updateOptions(EFFECTS[effect].noui);
-  imgPreview.style.filter = EFFECTS[effect].filter(slider.noUiSlider.get());
+  else {
+    effectLevel.classList.remove('hidden');
+    slider.noUiSlider.updateOptions(EFFECTS[effect].noui);
+    imgPreview.style.filter = EFFECTS[effect].filter(slider.noUiSlider.get());
+  }
 };
 
 
 function resetEffect() {
   currentEffect = DEFAULT_EFFECT;
-  setEffect();
+  setEffect(currentEffect);
 };
 
 
 function onEffectChange(evt) {
-  const effectElement = evt.target.closest('.effects__radio');
-  if (effectElement) {
+  if (evt.target.closest('.effects__radio')) {
     currentEffect = evt.target.value;
-    setEffect();
+    setEffect(currentEffect);
   }
 };
 
@@ -65,7 +65,7 @@ function setSlider() {
       connect: 'lower',
     }
   );
-  setEffect();
+  setEffect(currentEffect);
   effectsList.addEventListener('change', onEffectChange);
   slider.noUiSlider.on('update', onMoveSlider);
 };
@@ -76,21 +76,21 @@ const DEFAULT_SCALE = 100;
 
 
 function changeScale(evt) {
-  const valueInt = parseInt(scaleValue.value.replace('%', ''), 10);
+  const scaleValue = parseInt(scaleConrolValue.value.replace('%', ''), 10);
 
-  if (evt.target.closest('.scale__control--smaller') && valueInt > 25) {
-    scaleValue.value = `${valueInt - STEP}%`;
-    imgPreview.style.transform = `scale(${(valueInt - STEP) / 100})`;
-  } else if (evt.target.closest('.scale__control--bigger') && valueInt < 100) {
-    scaleValue.value = `${valueInt + STEP}%`;
-    imgPreview.style.transform = `scale(${(valueInt + STEP) / 100})`;
+  if (evt.target.closest('.scale__control--smaller') && scaleValue > 25) {
+    scaleConrolValue.value = `${scaleValue - STEP}%`;
+    imgPreview.style.transform = `scale(${(scaleValue - STEP) / 100})`;
+  } else if (evt.target.closest('.scale__control--bigger') && scaleValue < 100) {
+    scaleConrolValue.value = `${scaleValue + STEP}%`;
+    imgPreview.style.transform = `scale(${(scaleValue + STEP) / 100})`;
   }
 };
 
 
 function setPreview() {
   imgPreview.style.transform = `scale(${DEFAULT_SCALE / 100})`;
-  scaleValue.value = `${DEFAULT_SCALE}%`;
+  scaleConrolValue.value = `${DEFAULT_SCALE}%`;
   scaleControl.addEventListener('click', changeScale);
 };
 
