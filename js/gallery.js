@@ -1,6 +1,7 @@
-import { debounce, getRandomUniqueElements } from "./util.js";
+import { debounce, getRandomUniqueElements } from './util.js';
 
 const filterButtons = document.querySelectorAll('.img-filters__button');
+const imgFilters = document.querySelector('.img-filters');
 
 let currentPictures;
 
@@ -9,10 +10,10 @@ export function activatePictures(pictures, mode) {
   prepareBigPicture();
   document.querySelectorAll('.picture').forEach((pic) => pic.remove());
   switch (mode) {
-    case ("filter-default"):
+    case ('filter-default'):
       pictures.forEach((object) => drawSmallPicture(object));
       break;
-    case ("filter-random"):
+    case ('filter-random'):
       getRandomUniqueElements(pictures, 10).forEach((object) => drawSmallPicture(object));
       break;
     default:
@@ -26,7 +27,7 @@ export function activatePictures(pictures, mode) {
 const debouncedActivatePictures = debounce(activatePictures, 500);
 
 function drawSmallPicture(object) {
-  let newObject = document.querySelector('#picture').cloneNode(true).content;
+  const newObject = document.querySelector('#picture').cloneNode(true).content;
 
   newObject.querySelector('.picture__img').setAttribute('src', object.url);
   newObject.querySelector('.picture__likes').textContent = object.likes;
@@ -45,7 +46,7 @@ function drawSmallPicture(object) {
 
 
 function prepareBigPicture() {
-  let bigPicture = document.querySelector('.big-picture');
+  const bigPicture = document.querySelector('.big-picture');
 
 
   bigPicture.querySelector('#picture-cancel').addEventListener('click', (evt) => {
@@ -56,12 +57,12 @@ function prepareBigPicture() {
     document.querySelector('body').classList.remove('modal-open');
   });
 
-    document.addEventListener('keydown', function(event){
-      if(event.key === "Escape") {
-        bigPicture.classList.add('hidden');
-        document.querySelector('body').classList.remove('modal-open');
-      }
-    });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      bigPicture.classList.add('hidden');
+      document.querySelector('body').classList.remove('modal-open');
+    }
+  });
 
 }
 
@@ -69,7 +70,7 @@ function prepareBigPicture() {
 function drawBigPicture(object) {
   document.querySelector('body').classList.add('modal-open');
 
-  let bigPicture = document.querySelector('.big-picture');
+  const bigPicture = document.querySelector('.big-picture');
   bigPicture.classList.remove('hidden');
 
   bigPicture.querySelector('.big-picture__img').querySelector('img').setAttribute('src', object.url);
@@ -80,20 +81,20 @@ function drawBigPicture(object) {
 
 
 
-  let socialComments = bigPicture.querySelector('.social__comments');
-  let commentLoader =  bigPicture.querySelector(".social__comments-loader");
+  const socialComments = bigPicture.querySelector('.social__comments');
+  const commentLoader = bigPicture.querySelector('.social__comments-loader');
   commentLoader.classList.remove('hidden');
 
 
   socialComments.querySelectorAll('.social__comment').forEach((oldComment) => oldComment.remove());
 
-  let allComments = [];
+  const allComments = [];
 
   object.comments.forEach((comment) => {
-    let listItem = document.createElement('li');
+    const listItem = document.createElement('li');
     listItem.classList.add('social__comment');
 
-    let commentImage = document.createElement('img');
+    const commentImage = document.createElement('img');
     commentImage.setAttribute('class', 'social__picture');
     commentImage.setAttribute('src', comment.avatar);
     commentImage.setAttribute('alt', comment.name);
@@ -101,7 +102,7 @@ function drawBigPicture(object) {
     commentImage.setAttribute('heigth', 35);
 
 
-    let commentText = document.createElement('p');
+    const commentText = document.createElement('p');
     commentText.setAttribute('class', 'social__text');
     commentText.textContent = comment.message;
 
@@ -122,10 +123,10 @@ function drawBigPicture(object) {
     commentLoader.classList.add('hidden');
   }
 
-  bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
+  bigPicture.querySelector('.current-comments-count').textContent = commentIndex;
 
-  commentLoader.addEventListener('click', function addComments (evt) {
-    let comentBorder = commentIndex + 5;
+  commentLoader.addEventListener('click', function addComments() {
+    const comentBorder = commentIndex + 5;
     while (commentIndex < comentBorder && commentIndex < allComments.length) {
       socialComments.append(allComments[commentIndex]);
       commentIndex++;
@@ -136,12 +137,13 @@ function drawBigPicture(object) {
       commentLoader.removeEventListener('click', addComments);
     }
 
-    bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
+    bigPicture.querySelector('.current-comments-count').textContent = commentIndex;
   });
 }
 
 
 export function setEventFilter() {
+  imgFilters.classList.remove('img-filters--inactive');
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
       filterButtons.forEach((otherButton) => otherButton.classList.remove('img-filters__button--active'));
@@ -149,4 +151,4 @@ export function setEventFilter() {
       debouncedActivatePictures(currentPictures, button.id);
     });
   });
-};
+}

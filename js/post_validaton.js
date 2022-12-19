@@ -1,15 +1,12 @@
 const form = document.querySelector('.img-upload__form');
 const hashtagsField = form.querySelector('.text__hashtags');
-const submitButton = form.querySelector('.img-upload__submit');
 
 const description = form.querySelector('.text__description');
 
-const hashtagRegex = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}$)|(^\s*$)/
+const hashtagRegex = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}$)|(^\s*$)/;
 
 
-
-
-let pristine = new Pristine(form, {
+const pristine = new Pristine(form, {
     classTo: 'img-upload__field-wrapper',
     errorClass: 'text-invalid',
     successClass: 'text-valid',
@@ -25,7 +22,7 @@ pristine.addValidator(
         const hashtagList = value.split(' ');
 
         let isHashtagRight = true;
-        hashtagList.forEach(text => {
+        hashtagList.forEach((text) => {
             isHashtagRight = isHashtagRight & hashtagRegex.test(text);
         });
         return isHashtagRight;
@@ -38,7 +35,7 @@ pristine.addValidator(
     (hashtag) => {
         const keys = hashtag.split(' ').map((tag) => tag.toLowerCase());
 
-        return (new Set(keys).size == keys.length);
+        return (new Set(keys).size === keys.length);
     },
     'Hashtags is not uniuque'
 );
@@ -49,6 +46,4 @@ pristine.addValidator(
     'Comment is too big'
 );
 
-
-export {pristine};
-
+export { pristine };
