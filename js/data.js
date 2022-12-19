@@ -1,28 +1,28 @@
-import {getRandomPositiveInteger} from './util.js';
+import { getRandomPositiveInteger } from './util.js';
 
 function generateObjects() {
 
   const MESSAGES = [
-   'Всё отлично!',
-   'В целом всё неплохо. Но не всё.',
-   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+    'Всё отлично!',
+    'В целом всё неплохо. Но не всё.',
+    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-   const NICKNAMES = [
-    "Harry","Ross",
-    "Bruce","Cook",
-    "Carolyn","Morgan",
-    "Albert","Walker",
-    "Larry","Barnes",
-    "Lois","Wilson",
-    "Jesse","Campbell",
-    "Ernest","Rogers",
-    "Theresa","Patterson",
-    "Henry","Simmons",
-    "Michelle","Perry",
-    "Frank","Butler",
+  const NICKNAMES = [
+    "Harry", "Ross",
+    "Bruce", "Cook",
+    "Carolyn", "Morgan",
+    "Albert", "Walker",
+    "Larry", "Barnes",
+    "Lois", "Wilson",
+    "Jesse", "Campbell",
+    "Ernest", "Rogers",
+    "Theresa", "Patterson",
+    "Henry", "Simmons",
+    "Michelle", "Perry",
+    "Frank", "Butler",
     "Shirley"];
 
   let objects = [];
@@ -43,11 +43,11 @@ function generateObjects() {
       usedCommentIDs.push(newID);
 
       comments.push({
-          id: newID,
-          avatar: 'img/avatar-' + getRandomPositiveInteger(1, 6) +'.svg',
-          message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length-1)],
-          name: NICKNAMES[getRandomPositiveInteger(0, NICKNAMES.length-1)],
-        }
+        id: newID,
+        avatar: 'img/avatar-' + getRandomPositiveInteger(1, 6) + '.svg',
+        message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
+        name: NICKNAMES[getRandomPositiveInteger(0, NICKNAMES.length - 1)],
+      }
       );
     }
 
@@ -149,4 +149,4 @@ export const EFFECTS = {
   },
 };
 
-export const PUCTURE_FORMATS = [ 'jpg', 'jpeg', 'png','gif'];
+export const PUCTURE_FORMATS = ['jpg', 'jpeg', 'png', 'gif'];

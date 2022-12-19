@@ -8,7 +8,7 @@ const getRandomPositiveInteger = (a, b) => {
 }
 
 const checkStringLength = (string, size) => {
-/* Returns true if string is shorter then size, and false otherwise. */
+  /* Returns true if string is shorter then size, and false otherwise. */
   return String(string).length <= size;
 }
 
@@ -17,7 +17,7 @@ const isEsc = (event) => event.key === 'Escape';
 
 // Источник - https://www.freecodecamp.org/news/javascript-debounce-example
 
-function debounce (callback, timeoutDelay = 500) {
+function debounce(callback, timeoutDelay = 500) {
   let timeoutId;
 
   return (...rest) => {
@@ -29,7 +29,7 @@ function debounce (callback, timeoutDelay = 500) {
 
 // Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_throttle
 
-function throttle (callback, delayBetweenFrames) {
+function throttle(callback, delayBetweenFrames) {
   let lastTime = 0;
 
   return (...rest) => {
@@ -57,4 +57,4 @@ function getRandomUniqueElements(arr, n) {
 
 
 
-export {getRandomPositiveInteger, checkStringLength, isEsc, debounce, throttle, getRandomUniqueElements};
+export { getRandomPositiveInteger, checkStringLength, isEsc, debounce, throttle, getRandomUniqueElements };

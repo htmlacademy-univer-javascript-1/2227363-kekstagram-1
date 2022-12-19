@@ -50,5 +50,5 @@ pristine.addValidator(
 );
 
 
-export {pristine};
+export { pristine };
 

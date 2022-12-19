@@ -57,12 +57,12 @@ function prepareBigPicture() {
     document.querySelector('body').classList.remove('modal-open');
   });
 
-    document.addEventListener('keydown', function(event){
-      if(event.key === "Escape") {
-        bigPicture.classList.add('hidden');
-        document.querySelector('body').classList.remove('modal-open');
-      }
-    });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape") {
+      bigPicture.classList.add('hidden');
+      document.querySelector('body').classList.remove('modal-open');
+    }
+  });
 
 }
 
@@ -82,7 +82,7 @@ function drawBigPicture(object) {
 
 
   let socialComments = bigPicture.querySelector('.social__comments');
-  let commentLoader =  bigPicture.querySelector(".social__comments-loader");
+  let commentLoader = bigPicture.querySelector(".social__comments-loader");
   commentLoader.classList.remove('hidden');
 
 
@@ -125,7 +125,7 @@ function drawBigPicture(object) {
 
   bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
 
-  commentLoader.addEventListener('click', function addComments (evt) {
+  commentLoader.addEventListener('click', function addComments(evt) {
     let comentBorder = commentIndex + 5;
     while (commentIndex < comentBorder && commentIndex < allComments.length) {
       socialComments.append(allComments[commentIndex]);

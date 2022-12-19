@@ -1,4 +1,4 @@
-import {EFFECTS} from './data.js';
+import { EFFECTS } from './data.js';
 
 const DEFAULT_EFFECT = 'none';
 
@@ -56,14 +56,14 @@ function setSlider() {
   effectLevel.classList.add('hidden');
   noUiSlider.create(
     slider, {
-      range: {
-        min: 0,
-        max: 100
-      },
-      start: 100,
-      step: 1,
-      connect: 'lower',
-    }
+    range: {
+      min: 0,
+      max: 100
+    },
+    start: 100,
+    step: 1,
+    connect: 'lower',
+  }
   );
   setEffect(currentEffect);
   effectsList.addEventListener('change', onEffectChange);
@@ -100,4 +100,4 @@ function resetScale() {
 };
 
 
-export {resetScale, setPreview, setSlider, resetEffect}
+export { resetScale, setPreview, setSlider, resetEffect }
