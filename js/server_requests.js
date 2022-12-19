@@ -1,7 +1,6 @@
 import { pictureObjects } from "./data.js";
 import { setEventFilter } from "./gallery.js";
 
-const imgFilters = document.querySelector('.img-filters');
 
 
 function getData(render) {
@@ -9,7 +8,6 @@ function getData(render) {
     .then((response) => response.json())
     .then((photos) => render(photos))
     .then(() => {
-      imgFilters.classList.remove('img-filters--inactive');
       setEventFilter();
     })
     .catch(() => render(pictureObjects));

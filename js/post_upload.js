@@ -1,6 +1,7 @@
 import { resetEffect, resetScale, setPreview, setSlider } from "./modify_image.js";
 import { pristine } from "./post_validaton.js";
 import { sendData } from "./server_requests.js";
+import { setFileListener } from "./upload_picture.js";
 import { isEsc } from "./util.js";
 
 const form = document.querySelector('#upload-select-image');
@@ -39,7 +40,8 @@ function escListener(evt) {
 function createPostForm() {
   setSlider();
 
-  uploadFile.addEventListener('change', () => {
+  uploadFile.addEventListener('change', (evt) => {
+    setFileListener(evt);
     setPreview();
     document.addEventListener('keydown', escListener);
     uploadCansel.addEventListener('click', closeOverlay, {once: true});

@@ -1,6 +1,7 @@
 import { debounce, getRandomUniqueElements } from "./util.js";
 
 const filterButtons = document.querySelectorAll('.img-filters__button');
+const imgFilters = document.querySelector('.img-filters');
 
 let currentPictures;
 
@@ -142,6 +143,7 @@ function drawBigPicture(object) {
 
 
 export function setEventFilter() {
+  imgFilters.classList.remove('img-filters--inactive');
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
       filterButtons.forEach((otherButton) => otherButton.classList.remove('img-filters__button--active'));

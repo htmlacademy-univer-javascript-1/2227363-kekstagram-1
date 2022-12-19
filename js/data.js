@@ -148,3 +148,5 @@ export const EFFECTS = {
     filter: (value) => `brightness(${value})`
   },
 };
+
+export const PUCTURE_FORMATS = [ 'jpg', 'jpeg', 'png','gif'];
