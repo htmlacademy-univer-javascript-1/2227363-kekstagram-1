@@ -117,6 +117,8 @@ function drawBigPicture(object) {
     if (commentIndex >= allComments.length) {
       commentLoader.classList.add('hidden');
     }
+
+    bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
   });
 }
 
