@@ -1,8 +1,8 @@
-import { resetEffect, resetScale, setPreview, setSlider } from "./modify_image.js";
-import { pristine } from "./post_validaton.js";
-import { sendData } from "./server_requests.js";
-import { setFileListener } from "./upload_picture.js";
-import { isEsc } from "./util.js";
+import { resetEffect, resetScale, setPreview, setSlider } from './modify_image.js';
+import { pristine } from './post_validaton.js';
+import { sendData } from './server_requests.js';
+import { setFileListener } from './upload_picture.js';
+import { isEsc } from './util.js';
 
 const form = document.querySelector('#upload-select-image');
 
@@ -48,7 +48,7 @@ function createPostForm() {
     document.body.classList.add('modal-open');
     imgUploadOverlay.classList.remove('hidden');
   });
-};
+}
 
 
 function createSuccessElement() {
@@ -63,7 +63,7 @@ function createSuccessElement() {
       }
     });
   document.body.appendChild(successElement);
-};
+}
 
 
 function createErrorElement(errorTitle) {
@@ -78,7 +78,7 @@ function createErrorElement(errorTitle) {
       }
     });
   document.body.appendChild(errorElement);
-};
+}
 
 
 export function activateUploadFile() {
@@ -100,5 +100,4 @@ export function activateUploadFile() {
   createPostForm();
   resetEffect();
   resetScale();
-};
-
+}

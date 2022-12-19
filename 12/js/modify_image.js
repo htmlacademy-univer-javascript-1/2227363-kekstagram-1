@@ -27,13 +27,13 @@ function setEffect(effect) {
     slider.noUiSlider.updateOptions(EFFECTS[effect].noui);
     imgPreview.style.filter = EFFECTS[effect].filter(slider.noUiSlider.get());
   }
-};
+}
 
 
 function resetEffect() {
   currentEffect = DEFAULT_EFFECT;
   setEffect(currentEffect);
-};
+}
 
 
 function onEffectChange(evt) {
@@ -41,7 +41,7 @@ function onEffectChange(evt) {
     currentEffect = evt.target.value;
     setEffect(currentEffect);
   }
-};
+}
 
 
 function onMoveSlider() {
@@ -49,26 +49,25 @@ function onMoveSlider() {
   if (currentEffect !== DEFAULT_EFFECT) {
     imgPreview.style.filter = EFFECTS[currentEffect].filter(slider.noUiSlider.get());
   }
-};
+}
 
 
 function setSlider() {
   effectLevel.classList.add('hidden');
   noUiSlider.create(
     slider, {
-    range: {
-      min: 0,
-      max: 100
-    },
-    start: 100,
-    step: 1,
-    connect: 'lower',
-  }
-  );
+      range: {
+        min: 0,
+        max: 100
+      },
+      start: 100,
+      step: 1,
+      connect: 'lower',
+    });
   setEffect(currentEffect);
   effectsList.addEventListener('change', onEffectChange);
   slider.noUiSlider.on('update', onMoveSlider);
-};
+}
 
 
 const STEP = 25;
@@ -85,19 +84,19 @@ function changeScale(evt) {
     scaleConrolValue.value = `${scaleValue + STEP}%`;
     imgPreview.style.transform = `scale(${(scaleValue + STEP) / 100})`;
   }
-};
+}
 
 
 function setPreview() {
   imgPreview.style.transform = `scale(${DEFAULT_SCALE / 100})`;
   scaleConrolValue.value = `${DEFAULT_SCALE}%`;
   scaleControl.addEventListener('click', changeScale);
-};
+}
 
 
 function resetScale() {
   scaleControl.removeEventListener('click', changeScale);
-};
+}
 
 
-export { resetScale, setPreview, setSlider, resetEffect }
+export { resetScale, setPreview, setSlider, resetEffect };

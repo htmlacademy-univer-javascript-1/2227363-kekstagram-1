@@ -1,4 +1,4 @@
-import { PUCTURE_FORMATS } from "./data.js";
+import { PUCTURE_FORMATS } from './data.js';
 
 const imgUploadInput = document.querySelector('.img-upload__input');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
@@ -24,4 +24,4 @@ export function setFileListener(evt) {
       preview.style.removeProperty('background-image');
     });
   }
-};
+}
