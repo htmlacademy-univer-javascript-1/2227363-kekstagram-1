@@ -1,5 +1,5 @@
-import { pictureObjects } from "./data.js";
-import { setEventFilter } from "./gallery.js";
+import { pictureObjects } from './data.js';
+import { setEventFilter } from './gallery.js';
 
 
 

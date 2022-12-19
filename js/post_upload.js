@@ -1,8 +1,8 @@
-import { resetEffect, resetScale, setPreview, setSlider } from "./modify_image.js";
-import { pristine } from "./post_validaton.js";
-import { sendData } from "./server_requests.js";
-import { setFileListener } from "./upload_picture.js";
-import { isEsc } from "./util.js";
+import { resetEffect, resetScale, setPreview, setSlider } from './modify_image.js';
+import { pristine } from './post_validaton.js';
+import { sendData } from './server_requests.js';
+import { setFileListener } from './upload_picture.js';
+import { isEsc } from './util.js';
 
 const form = document.querySelector('#upload-select-image');
 
