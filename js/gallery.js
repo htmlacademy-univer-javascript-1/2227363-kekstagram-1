@@ -6,6 +6,7 @@ import  {pictureObjects}  from "./data.js";
   prepareBigPicture();
 }
 
+
 function drawSmallPicture(object) {
 
   let newObject = document.querySelector('#picture').cloneNode(true).content;
@@ -29,8 +30,6 @@ function drawSmallPicture(object) {
 function prepareBigPicture() {
   let bigPicture = document.querySelector('.big-picture');
 
-  bigPicture.querySelector('.social__comments-loader').classList.add('hidden');
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
 
   bigPicture.querySelector('#picture-cancel').addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -62,10 +61,16 @@ function drawBigPicture(object) {
   bigPicture.querySelector('.likes-count').textContent = object.likes;
   bigPicture.querySelector('.comments-count').textContent = object.comments.length;
 
+
+
   let socialComments = bigPicture.querySelector('.social__comments');
+  let commentLoader =  bigPicture.querySelector(".social__comments-loader");
+  commentLoader.classList.remove('hidden');
+
 
   socialComments.querySelectorAll('.social__comment').forEach((oldComment) => oldComment.remove());
 
+  let allComments = [];
 
   object.comments.forEach((comment) => {
     let listItem = document.createElement('li');
@@ -86,7 +91,32 @@ function drawBigPicture(object) {
     listItem.append(commentImage);
     listItem.append(commentText);
 
-    socialComments.append(listItem);
+    allComments.push(listItem);
+  });
+
+  let commentIndex = 0;
+
+  while (commentIndex < 5 && commentIndex < allComments.length) {
+    socialComments.append(allComments[commentIndex]);
+    commentIndex++;
+  }
+
+  if (commentIndex >= allComments.length) {
+    commentLoader.classList.add('hidden');
+  }
+
+  bigPicture.querySelector(".current-comments-count").textContent = commentIndex;
+
+  commentLoader.addEventListener('click', (evt) => {
+    let comentBorder = commentIndex + 5;
+    while (commentIndex < comentBorder && commentIndex < allComments.length) {
+      socialComments.append(allComments[commentIndex]);
+      commentIndex++;
+    }
+
+    if (commentIndex >= allComments.length) {
+      commentLoader.classList.add('hidden');
+    }
   });
 }
 
