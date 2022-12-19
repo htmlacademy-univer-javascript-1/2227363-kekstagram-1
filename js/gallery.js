@@ -125,7 +125,7 @@ function drawBigPicture(object) {
 
   bigPicture.querySelector('.current-comments-count').textContent = commentIndex;
 
-  commentLoader.addEventListener('click', function addComments(evt) {
+  commentLoader.addEventListener('click', function addComments() {
     const comentBorder = commentIndex + 5;
     while (commentIndex < comentBorder && commentIndex < allComments.length) {
       socialComments.append(allComments[commentIndex]);

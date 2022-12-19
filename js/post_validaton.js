@@ -1,15 +1,12 @@
 const form = document.querySelector('.img-upload__form');
 const hashtagsField = form.querySelector('.text__hashtags');
-const submitButton = form.querySelector('.img-upload__submit');
 
 const description = form.querySelector('.text__description');
 
 const hashtagRegex = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19}$)|(^\s*$)/;
 
 
-
-
-let pristine = new Pristine(form, {
+const pristine = new Pristine(form, {
     classTo: 'img-upload__field-wrapper',
     errorClass: 'text-invalid',
     successClass: 'text-valid',
@@ -49,6 +46,4 @@ pristine.addValidator(
     'Comment is too big'
 );
 
-
 export { pristine };
-
